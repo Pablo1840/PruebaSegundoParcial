@@ -45,5 +45,11 @@ public class ProductoController {
         return true;
     }
 
+    public boolean deleteProductoById(int id) {
+        Optional<Producto> productoOptional = this.findProductoById(id);
+        if (!productoOptional.isPresent()) return false;
+        productoRepository.deleteById(id);
+        return true;
+    }
 
 }

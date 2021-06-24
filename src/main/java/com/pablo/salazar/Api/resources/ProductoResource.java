@@ -62,4 +62,11 @@ public class ProductoResource {
             throw new EditProductoException("los datos enviados no son correctos");
         }
     }
+
+    @DeleteMapping(value = ID)
+    public  ResponseEntity deleteProducto(@PathVariable int id){
+        if (this.productoController.deleteProductoById(id))
+            return new ResponseEntity("\"El producto fue eliminado\"", HttpStatus.ACCEPTED);
+        return new ResponseEntity("\"El producto no  existe\"", HttpStatus.NOT_FOUND);
+    }
 }

@@ -55,4 +55,17 @@ public class ProductoResourceTest {
 
     }
 
+    @Test
+    public void editProduct() {
+        this.producto.setBrand("Nokia");
+        this.producto.setModel("1100");
+        this.producto.setPrice(80);
+        this.producto.setId(20);
+        String json = restService
+                .restBuilder(new RestBuilder<String>().clazz(String.class))
+                .path(ProductoResource.PRODUCTO).path(ProductoResource.ID)
+                .expand(10).body(producto).put().build();
+        System.out.println(json);
+    }
+
 }

@@ -22,11 +22,11 @@ public class ProductoController {
         return this.productoRepository.findAll();
     }
 
-    public Optional<Producto> findProductById(int id) {
+    public Optional<Producto> findProductoById(int id) {
         return this.productoRepository.findById(id);
     }
 
-    public List<Producto> findProductosByMarca(String brand) {
+    public List<Producto> findProductosByBrand(String brand) {
         return this.productoRepository.findProductosByBrand(brand);
     }
 

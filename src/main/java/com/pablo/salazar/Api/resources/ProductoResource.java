@@ -2,6 +2,7 @@ package com.pablo.salazar.Api.resources;
 
 import com.pablo.salazar.Api.controllers.ProductoController;
 import com.pablo.salazar.Api.entities.Producto;
+import com.pablo.salazar.Api.resources.Exceptions.CreateProductoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +38,16 @@ public class ProductoResource {
             return new ResponseEntity(productoOptional.get(), HttpStatus.OK);
         } else {
             return new ResponseEntity("\"El producto no existe\"", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity createProducto(@RequestBody Producto producto) throws CreateProductoException {
+        try {
+            this.productoController.createProducto(producto);
+            return new ResponseEntity("\"El Producto fue creado\"", HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            throw new CreateProductoException("Los datos enviados no son los correctos");
         }
     }
 }

@@ -15,9 +15,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 public class ProductoResourceTest {
 
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
     @Autowired
     private RestService restService;
     private Producto producto;
+
+    @Before
+    public void before() {
+        producto = new Producto();
+        this.producto.setBrand("Iphone");
+        this.producto.setModel("5");
+        this.producto.setPrice(550);
+    }
 
     @Test
     public void getAllProduct() {
@@ -33,5 +44,14 @@ public class ProductoResourceTest {
                 .restBuilder(new RestBuilder<String>().clazz(String.class))
                 .path(ProductoResource.PRODUCTO).path(ProductoResource.ID).expand(10).get().build();
         System.out.println(json);
+    }
+
+    @Test
+    public void createProducto() {
+        String json = restService
+                .restBuilder(new RestBuilder<String>().clazz(String.class))
+                .path(ProductoResource.PRODUCTO).body(this.producto).post().build();
+        System.out.println(json);
+
     }
 }

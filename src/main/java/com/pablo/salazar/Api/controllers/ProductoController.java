@@ -30,4 +30,8 @@ public class ProductoController {
         return this.productoRepository.findProductosByBrand(brand);
     }
 
+    public void createProducto(Producto producto) {
+        this.productoRepository.save(producto);
+    }
+
 }

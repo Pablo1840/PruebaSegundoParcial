@@ -68,4 +68,13 @@ public class ProductoResourceTest {
         System.out.println(json);
     }
 
+    @Test
+    public void deleteProducto() {
+        String json = restService
+                .restBuilder(new RestBuilder<String>().clazz(String.class))
+                .path(ProductoResource.PRODUCTO).path(ProductoResource.ID).expand(10).delete().build();
+        System.out.println(json);
+    }
+
+
 }

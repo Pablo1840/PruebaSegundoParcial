@@ -34,4 +34,16 @@ public class ProductoController {
         this.productoRepository.save(producto);
     }
 
+    public boolean editProductoById(int id, Producto producto) {
+        Optional<Producto> productoOptional = this.findProductoById(id);
+        if (!productoOptional.isPresent()) return false;
+        Producto productodb = productoOptional.get();
+        productodb.setBrand(producto.getBrand());
+        productodb.setModel(producto.getModel());
+        productodb.setPrice(producto.getPrice());
+        productoRepository.save(productodb);
+        return true;
+    }
+
+
 }
